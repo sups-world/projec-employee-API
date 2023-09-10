@@ -1,5 +1,6 @@
 import {
   createEmpDb,
+  editEmpDB,
   getAllEmpsDb,
   getOneEmpsDb,
 } from "../services/employee.services.js";
@@ -35,8 +36,15 @@ export const createEmployee = async (req, res, next) => {
 };
 
 export const editEmployee = async (req, res, next) => {
-  console.log("edit one emps");
-  res.send("edit one employee");
+  const { id } = req.params;
+  const { emp_name } = req.body;
+
+  try {
+    const user = await editEmpDB(parseInt(id), emp_name);
+    return res.send(user);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const deleteEmployee = async (req, res, next) => {

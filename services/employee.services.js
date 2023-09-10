@@ -45,3 +45,22 @@ export const getOneEmpsDb = async (employee_id) => {
     console.log(error);
   }
 };
+
+//edit employee by Id
+export const editEmpDB = async (employee_id, emp_name) => {
+  try {
+    const updated = await prisma.employee.update({
+      where: {
+        employee_id,
+      },
+      data: {
+        emp_name,
+      },
+    });
+    return updated;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//delete employee by Id
