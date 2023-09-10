@@ -24,13 +24,17 @@ export const createEmployee = async (req, res, next) => {
   console.log(req.body);
 
   var { emp_name, dob, gender, salary, entry_by } = req.body;
+  console.log("entry by:::  ", entry_by);
   dob = new Date(dob);
+  if (entry_by === null || entry_by === undefined) {
+    entry_by = "admin";
+  }
 
   const newEmployee = await createEmpDb(
     emp_name,
     dob,
     gender,
-    salary,
+    parseFloat(salary),
     entry_by
   );
   return res.send(newEmployee);
