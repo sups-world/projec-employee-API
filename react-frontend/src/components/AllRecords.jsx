@@ -19,11 +19,13 @@ export function AllRecords() {
   return (
     <div>
       <h1>Records</h1>
+      <span>Employee Id</span> <span>Employee Name</span>
+      <br />
       <ul>
         {employees.map((contact) => (
-          <li key={contact.emp_id}>
+          <li key={contact.id}>
             <div>
-              <span>{contact.emp_id}</span>
+              <span>{contact.employee_id} </span>
               <span>{contact.emp_name}</span>
             </div>
           </li>
