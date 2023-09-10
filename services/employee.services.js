@@ -23,7 +23,8 @@ export const getAllEmpsDb = async () => {
   try {
     const allUsers = await prisma.employee.findMany({
       orderBy: {
-        entry_date: "desc",
+        employee_id: "desc",
+        // entry_date: "desc",
       },
     });
     return allUsers;
@@ -64,3 +65,11 @@ export const editEmpDB = async (employee_id, emp_name) => {
 };
 
 //delete employee by Id
+export const delEmpDb = (employee_id) => {
+  const abc = prisma.employee.delete({
+    where: {
+      employee_id,
+    },
+  });
+  return abc;
+};

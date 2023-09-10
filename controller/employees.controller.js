@@ -1,5 +1,6 @@
 import {
   createEmpDb,
+  delEmpDb,
   editEmpDB,
   getAllEmpsDb,
   getOneEmpsDb,
@@ -48,6 +49,17 @@ export const editEmployee = async (req, res, next) => {
 };
 
 export const deleteEmployee = async (req, res, next) => {
-  console.log("delete one emps");
-  res.send("delete one employees");
+  const { id } = req.params;
+
+  try {
+    const user = await delEmpDb(parseInt(id));
+    if (user) {
+      return res.send(user);
+    } else {
+      return res.status(404).send("no user found");
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(404).send("No such record found");
+  }
 };

@@ -13,4 +13,4 @@ employeesRoutes.get("/", viewAllEmployees);
 employeesRoutes.get("/:id", viewOneEmployee);
 employeesRoutes.post("/", createEmployee);
 employeesRoutes.patch("/:id", editEmployee);
-employeesRoutes.delete("/", deleteEmployee);
+employeesRoutes.delete("/:id", deleteEmployee);
