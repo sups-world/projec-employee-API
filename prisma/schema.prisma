@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// TODO::gender ma Gender rakhnu
+model Employee {
+  employee_id      Int                 @id @default(autoincrement())
+  emp_name         String              @db.VarChar(45)
+  dob              DateTime
+  gender           String
+  salary           Float
+  entry_by         String
+  entry_date       DateTime            @default(now())
+  empQualification Emp_Qualification[]
+}
+
+model Emp_Qualification {
+  // id             Int               @id @unique
+  qualifications QualificationList @relation(fields: [q_id], references: [q_id])
+  // qualifications1 QualificationList @relation(fields: [q_name], references: [q_name])
+
+  q_id        Int
+  q_name      String
+  marks       Int
+  Employee    Employee? @relation(fields: [employee_id], references: [employee_id])
+  employee_id Int?
+
+  @@id([q_id, q_name])
+}
+
+model QualificationList {
+  q_id              Int                 @id @default(autoincrement())
+  q_name            String
+  Emp_Qualification Emp_Qualification[]
+}
