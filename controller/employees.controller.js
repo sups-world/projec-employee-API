@@ -1,5 +1,3 @@
-import express from "express";
-
 export const viewAllEmployees = async (req, res, next) => {
   console.log("view all emps");
   res.send("view all employees");
